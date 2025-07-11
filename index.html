@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+   Portfólio Isabelly
+  </title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+   :root {
+      --rosa: #ff69b4;
+      --rosa-claro: #ffcce5;
+      --preto: #000000;
+      --branco: #ffffff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background-color: var(--preto);
+      color: var(--branco);
+      overflow-x: hidden;
+    }
+    .navbar {
+      background-color: var(--preto);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 2rem;
+      border-bottom: 4px solid var(--rosa);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--rosa);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: space-between;
+    }
+    .nav-center {
+      display: flex;
+      gap: 1.5rem;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-links .search-input {
+      margin-left: auto;
+    }
+    .nav-links a {
+      color: var(--rosa);
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid var(--rosa);
+      padding: 0.4rem 0.8rem;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+    .nav-links a:hover {
+      background-color: var(--rosa);
+      color: var(--preto);
+    }
+    .section {
+      padding: 3rem 2rem;
+    }
+    #inicio {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    #inicio img {
+      width: 200px;
+      height: 200px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 6px 6px 0 var(--rosa-claro);
+      border: 4px dashed var(--rosa);
+    }
+    #inicio .bio-resumida {
+      max-width: 400px;
+    }
+    h2, h3 {
+      color: var(--rosa);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .playlist iframe {
+      border-radius: 12px;
+      box-shadow: 4px 4px 0 var(--rosa-claro);
+      width: 100%;
+      max-width: 400px;
+    }
+    .galeria-pasta img.capa,
+    .animes img.capa {
+      width: 200px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--rosa-claro);
+      border: 4px solid var(--rosa);
+    }
+    .desenhos img {
+      width: 200px;
+      border-radius: 12px;
+      box-shadow: 4px 4px 0 var(--rosa-claro);
+      margin: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .desenhos img:hover {
+      transform: scale(1.05);
+      box-shadow: 6px 6px 0 var(--rosa);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(6px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      flex-direction: column;
+      padding: 2rem;
+    }
+    .modal .fotos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .modal .fotos img {
+      width: 200px;
+      border-radius: 12px;
+      box-shadow: 4px 4px 0 var(--rosa-claro);
+    }
+    .close-btn {
+      background: var(--rosa);
+      color: var(--preto);
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .close-btn:hover {
+      background-color: var(--rosa-claro);
+      color: var(--preto);
+    }
+  
+    .search-input {
+      padding: 0.4rem 0.8rem;
+      border-radius: 10px;
+      border: 2px solid var(--rosa);
+      background-color: var(--preto);
+      color: var(--rosa);
+      font-family: 'Fredoka', sans-serif;
+      margin-left: auto;
+    }
+    .search-input::placeholder {
+      color: var(--rosa-claro);
+    }
+    .slider-btn {
+      background-color: var(--rosa);
+      border: none;
+      color: var(--preto);
+      padding: 0.5rem 1rem;
+      font-size: 1.4rem;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 2px 2px 0 var(--rosa-claro);
+      transition: transform 0.2s ease, background-color 0.3s;
+    }
+    .slider-btn:hover {
+      background-color: var(--rosa-claro);
+      transform: scale(1.1);
+    }
+    
+    .slider-container {
+      position: relative;
+      max-width: 350px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slider-content iframe {
+      width: 100%;
+      height: 80px;
+      border-radius: 12px;
+      display: none;
+      transition: opacity 0.5s ease;
+    }
+    .slider-content iframe.active {
+      display: block;
+    }
+  
+.nav-center a {
+  margin: 0 0.5rem;
+}
+
+#inicio img {
+  margin-right: 1.5rem;
+}
+</style>
+</head>
+<body>
+<header class="navbar">
+<div class="logo">
+    Isabelly
+   </div>
+<nav class="nav-links">
+<div class="nav-center">
+<a href="#inicio">
+      Início
+     </a>
+<a href="#sobre">
+      Sobre
+     </a>
+<a href="#contatos">
+      Contatos
+     </a>
+</div>
+<input class="search-input" placeholder="Pesquisar..." type="text"/>
+</nav>
+</header>
+<section class="section" id="inicio">
+<img alt="Foto da Isa" src="imagens/isaa.jpg"/>
+<div class="bio-resumida">
+<h2>
+     Oi, eu sou a Isa!
+    </h2>
+<p>
+     Sou apaixonada por design, música e tudo que brilha! ✨
+     <br/>
+     Amo criar coisas lindas com personalidade e amor.
+    </p>
+</div>
+</section>
+<section class="section" id="sobre">
+<h2>
+    Sobre
+   </h2>
+<div style="display: flex; flex-wrap: wrap; gap: 4rem; justify-content: flex-start; align-items: flex-start; margin-top: 2rem;">
+<div class="playlist-slider">
+<h3>
+      🎧 Playlist Favorita
+     </h3>
+<div class="slider-container">
+<button class="slider-btn left" onclick="mudarMusica(-1)">
+       ⯬
+      </button>
+<div class="slider-content">
+<iframe allow="encrypted-media" allowtransparency="true" frameborder="0" src="https://open.spotify.com/embed/track/0yB4jrSwN0bFtFRDR5vyMj">
+</iframe>
+<iframe allow="encrypted-media" allowtransparency="true" frameborder="0" src="https://open.spotify.com/embed/track/7qq0EOPW4RRlqdvMBmdd73">
+</iframe>
+<iframe allow="encrypted-media" allowtransparency="true" frameborder="0" src="https://open.spotify.com/embed/track/2QjOHCTQ1Jl3zawyYOpxh6">
+</iframe>
+<iframe allow="encrypted-media" allowtransparency="true" frameborder="0" src="https://open.spotify.com/embed/track/5LrN7yUQAzvthd4QujgPFr">
+</iframe>
+<iframe allow="encrypted-media" allowtransparency="true" frameborder="0" src="https://open.spotify.com/embed/track/2plbrEY59IikOBgBGLjaoe">
+</iframe>
+<iframe allow="encrypted-media" allowtransparency="true" frameborder="0" src="https://open.spotify.com/embed/track/1wVuPmvt6AWvTL5W2GJnzZ">
+</iframe>
+<iframe allow="encrypted-media" allowtransparency="true" frameborder="0" src="https://open.spotify.com/embed/track/0L8LOav65XwLjCLS11gNPD">
+</iframe>
+<iframe allow="encrypted-media" allowtransparency="true" frameborder="0" src="https://open.spotify.com/embed/track/2HRgqmZQC0MC7GeNuDIXHN">
+</iframe>
+<iframe allow="encrypted-media" allowtransparency="true" frameborder="0" src="https://open.spotify.com/embed/track/3hxIUxnT27p5WcmjGUXNwx">
+</iframe>
+<iframe class="active" src="https://open.spotify.com/embed/track/0yB4jrSwN0bFtFRDR5vyMj">
+</iframe>
+</div>
+<button class="slider-btn right" onclick="mudarMusica(1)">
+       ⯮
+      </button>
+</div>
+</div>
+<div class="galeria-pasta">
+<h3>
+      🖼️ Galeria de Fotos
+     </h3>
+<img alt="Capa Galeria" class="capa" onclick="abrirGaleria()" src="imagens/galeria_foto.jpg"/>
+</div>
+<div class="animes">
+<h3>
+      📺 Animes e Séries Favoritos
+     </h3>
+<img alt="Abrir Animes" class="capa" onclick="abrirAnimes()" src="imagens/My-Hero-Academia-World-Heroes-Mission.jpeg"/>
+</div>
+</div>
+<div style="margin-top: 3rem;">
+<h3>
+     🎨 Meus Desenhos
+    </h3>
+<div class="desenhos">
+<img alt="Desenho 1" src="imagens/imagem2.jpeg"/>
+<img alt="Desenho 2" src="imagens/desenho1.jpeg"/>
+<img alt="Desenho 3" src="imagens/imagem3.jpeg"/>
+</div>
+</div>
+</section>
+<section class="section" id="contatos">
+<h2>
+    Contatos
+   </h2>
+<div style="display: flex; align-items: center; gap: 20px;">
+<img alt="Foto de Contato" src="imagens/contatos_imagem.jpg" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--rosa);"/>
+<p>
+     insta:@nseioq email:ablu@gmaifalso
+    </p>
+</div>
+</section>
+<!-- Modal da Galeria -->
+<div class="modal" id="galeriaModal">
+<button class="close-btn" onclick="fecharGaleria()">
+    ⟵ Voltar
+   </button>
+<div class="fotos">
+<img alt="Foto 1" src="imagens/foto1.jpg"/>
+<img alt="Foto 2" src="imagens/foto2.jpg"/>
+<img alt="Foto 3" src="imagens/foto3.jpg"/>
+</div>
+</div>
+<!-- Modal dos Animes -->
+<div class="modal" id="animesModal">
+<button class="close-btn" onclick="fecharAnimes()">
+    ⟵ Voltar
+   </button>
+<div class="fotos">
+<img alt="Sailor Moon" src="imagens/sailor_moon.jpg"/>
+<img alt="Stranger Things" src="imagens/stranger_things.jpg"/>
+</div>
+</div>
+<script>
+   let musicaAtual = 0;
+    const musicas = document.querySelectorAll('.slider-content iframe');
+    function mostrarMusica(index) {
+      musicas.forEach((m, i) => {
+        m.classList.toggle('active', i === index);
+      });
+    }
+    function mudarMusica(direcao) {
+      musicaAtual = (musicaAtual + direcao + musicas.length) % musicas.length;
+      mostrarMusica(musicaAtual);
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      mostrarMusica(musicaAtual);
+    });
+  </script>
+<script>
+function abrirGaleria() {
+  document.getElementById('galeriaModal').style.display = 'flex';
+}
+function fecharGaleria() {
+  document.getElementById('galeriaModal').style.display = 'none';
+}
+function abrirAnimes() {
+  document.getElementById('animesModal').style.display = 'flex';
+}
+function fecharAnimes() {
+  document.getElementById('animesModal').style.display = 'none';
+}
+</script></body>
+</html>
